@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                sh "pwd && ls"
+                sh "go build -o go-calc/"
                 sh "packer build infra/packer-template.pkr.hcl"
             }
         }
