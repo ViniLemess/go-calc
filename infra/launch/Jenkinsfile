@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+    environment {
+        DOCKERHUB_LOGIN = credentials('dockerhub-login')
+    }
+    stages {
+        stage('Pull go-calc image from Dockerhub') {
+            steps {
+                sh 'docker pull $DOCKERHUB_LOGIN_USR/go-calc:latest'
+            }
+        }
+        stage('Run Spring Calculator') {
+            steps {
+                sh 'docker run --name calculator -dp 8090:8080 $DOCKERHUB_LOGIN_USR/go-calc:latest'
+            }
+        }
+    }
+}
