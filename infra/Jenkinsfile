@@ -1,0 +1,10 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build Docker Image') {
+            steps {
+                sh "packer build infra/packer_template.pkr.hcl"
+            }
+        }
+    }
+}
