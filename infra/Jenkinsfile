@@ -1,9 +1,14 @@
 pipeline {
     agent any
     stages {
+        stage('Build go-calc') {
+            steps {
+                sh "cd go-calc"
+                sh "go build"
+            }
+        }
         stage('Build Docker Image') {
             steps {
-                sh "go build -o go-calc/"
                 sh "packer build infra/packer-template.pkr.hcl"
             }
         }
