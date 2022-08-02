@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh "packer build infra/Bake/packer-template.pkr.hcl"
+                sh "packer build infra/bake/packer-template.pkr.hcl"
             }
         }
     }
