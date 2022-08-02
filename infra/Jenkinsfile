@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                sh "packer build /infra/packer_template.pkr.hcl"
+                sh "packer build /infra/packer-template.pkr.hcl"
             }
         }
     }
