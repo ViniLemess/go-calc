@@ -1,3 +1,7 @@
+variables {
+  dockerhub_username = ""
+  dockerhub_password = ""
+}
 
 source "docker" "go-calc" {
   commit  = true
@@ -16,8 +20,15 @@ build {
     destination = "/home/go-calc"
   }
 
-  post-processor "docker-tag" {
-    repository = "go-calc"
-    tag = ["latest"]
+  post-processors {
+    post-processor "docker-tag" {
+      repository = "${var.dockerhub_username}/go-calc"
+      tag = ["latest"]
+    }
+    post-processor "docker-push" {
+      login = true
+      login_username = "${var.dockerhub_username}"
+      login_password = "${var.dockerhub_password}"
+    }
   }
 }

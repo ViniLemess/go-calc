@@ -1,14 +1,17 @@
 pipeline {
     agent any
+    environment {
+            DOCKERHUB_LOGIN = credentials('dockerhub-login')
+    }
     stages {
         stage('Build go-calc') {
             steps {
                 sh "cd go-calc && go build"
             }
         }
-        stage('Build Docker Image') {
+        stage('Build Docker Image and publish on dockerhub') {
             steps {
-                sh "packer build infra/bake/packer-template.pkr.hcl"
+                sh "packer build -var 'dockerhub_username=$DOCKERHUB_LOGIN_USR' -var 'dockerhub_password=$DOCKERHUB_LOGIN_PSW' infra/bake/packer-template.pkr.hcl"
             }
         }
     }
