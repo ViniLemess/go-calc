@@ -18,7 +18,7 @@ build {
   }
 
   provisioner "file" {
-    source = "/go-calc/go-calc"
+    source = "go-calc/go-calc"
     destination = "/home/go-calc"
   }
 
