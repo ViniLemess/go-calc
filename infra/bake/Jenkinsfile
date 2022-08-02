@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Build Docker Image and publish on dockerhub') {
             steps {
-                sh "packer build -var 'dockerhub_username=$DOCKERHUB_LOGIN_USR' -var 'dockerhub_password=$DOCKERHUB_LOGIN_PSW' infra/bake/packer-template.pkr.hcl"
+                sh('packer build -var dockerhub_username=$DOCKERHUB_LOGIN_USR -var dockerhub_password=$DOCKERHUB_LOGIN_PSW infra/bake/packer-template.pkr.hcl')
             }
         }
     }
