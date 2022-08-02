@@ -3,8 +3,7 @@ pipeline {
     stages {
         stage('Build go-calc') {
             steps {
-                sh "cd go-calc"
-                sh "go build"
+                sh "cd go-calc && go build"
             }
         }
         stage('Build Docker Image') {
