@@ -11,12 +11,6 @@ source "docker" "go-calc" {
 build {
   sources = ["source.docker.go-calc"]
 
-  provisioner "shell" {
-    inline = [
-      "go build -o /go-calc"
-    ]
-  }
-
   provisioner "file" {
     source = "go-calc/go-calc"
     destination = "/home/go-calc"
