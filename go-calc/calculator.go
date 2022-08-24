@@ -7,29 +7,34 @@ import (
 
 var history []string
 
-func Sum(x float64, y float64) float64 {
-	sum := x + y
-	history = append(history, string(fmt.Sprintf("%f+%f=%f", x, y, sum)))
-	return sum
+func addHistory(x float64, y float64, res float64, op string) {
+	history = append(history, fmt.Sprintf("%s%s%s=%s", fmt.Sprint(x), op, fmt.Sprint(y), fmt.Sprint(res)))
 }
 
-func Sub(x float64, y float64) float64 {
-	difference := x - y
-	history = append(history, string(fmt.Sprintf("%f-%f=%f", x, y, difference)))
-	return difference
-}
-
-func Mul(x float64, y float64) float64 {
-	product := x * y
-	history = append(history, string(fmt.Sprintf("%fx%f=%f", x, y, product)))
-	return product
-}
-
-func Div(x float64, y float64) (float64, error) {
-	if y == 0 {
-		return -1, errors.New("divider cannot be 0")
+func calculate(op string, x float64, y float64) (float64, error) {
+	var result float64
+	switch op {
+	case "sum":
+		sum := x + y
+		addHistory(x, y, sum, "+")
+		result = sum
+	case "sub":
+		difference := x - y
+		addHistory(x, y, difference, "-")
+		result = difference
+	case "mul":
+		product := x * y
+		addHistory(x, y, product, "*")
+		result = product
+	case "div":
+		if y == 0 {
+			return 0, errors.New("illegal division operation, divider cannot be 0")
+		}
+		quotient := x / y
+		addHistory(x, y, quotient, "/")
+		result = quotient
+	default:
+		return 0, errors.New("unsupported operation : " + op)
 	}
-	quotient := x / y
-	history = append(history, string(fmt.Sprintf("%f/%f=%f", x, y, quotient)))
-	return quotient, nil
+	return result, nil
 }
