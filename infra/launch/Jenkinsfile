@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Run Spring Calculator') {
             steps {
-                sh 'docker run --name calculator -dp 8090:8090 $DOCKERHUB_LOGIN_USR/go-calc:latest'
+                sh 'docker run -it --rm --name calculator -dp 8090:8090 $DOCKERHUB_LOGIN_USR/go-calc:latest'
             }
         }
     }
