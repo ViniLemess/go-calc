@@ -1,8 +1,10 @@
 pipeline {
     agent any
+
     tools {
         maven "M3"
     }
+
     stages {
         stage('Gatling stress test go-calc') {
             steps {
