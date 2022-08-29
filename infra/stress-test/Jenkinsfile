@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Gatling stress test go-calc') {
             steps {
-                sh 'cd /gocalcstresstest && mvn clean gatling:test'
+                sh 'cd gocalcstresstest && mvn clean gatling:test'
             }
         }
     }
