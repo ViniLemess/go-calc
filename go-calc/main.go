@@ -15,8 +15,8 @@ func main() {
 	router.GET("/health", healthCheckHandler)
 	router.GET("/calc/history", historyHandler)
 	router.POST("/calc/:op/:x/:y", calcHandler)
-	log.Println("Running at 'http://localhost:8080'")
-	if err := http.ListenAndServe("0.0.0.0:8080", router); err != nil {
+	log.Println("Running at 'http://localhost:8090'")
+	if err := http.ListenAndServe("0.0.0.0:8090", router); err != nil {
 		log.Fatalln(err)
 	}
 }
