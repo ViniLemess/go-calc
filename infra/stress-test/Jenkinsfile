@@ -1,0 +1,10 @@
+pipeline {
+    agent any
+    stages {
+        stage('Gatling stress test go-calc') {
+            steps {
+                sh 'cd /gocalcstresstest && mvn clean gatling:test'
+            }
+        }
+    }
+}
